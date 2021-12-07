@@ -1,15 +1,6 @@
-function run() {
-  var a = 0;
+const n = 10;
 
-  if (a == 1) {
-    return c;
-  }
-
-  for (let i = 1; i < 10; i++) {
-    console.log(i);
-  }
-
-  return (d = a);
+for (let i = 1; i <= 10; i++) {
+  sum += i + "";
 }
-
-run();
+console.log(sum);
