@@ -1,7 +1,6 @@
 {
   "name": "jslessons",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,15 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ozirska/JSlessons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ozirska/JSlessons/issues"
+  },
+  "homepage": "https://github.com/Ozirska/JSlessons#readme",
+  "description": ""
 }
