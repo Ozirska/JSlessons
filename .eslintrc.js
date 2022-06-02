@@ -5,7 +5,14 @@ module.exports = {
     jest: true,
     browser: true,
   },
+
   rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "no-alert": 0,
     "no-console": 0,
     "no-constant-condition": 0,
