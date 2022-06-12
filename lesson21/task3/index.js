@@ -18,3 +18,7 @@ export const getGoal = () => {
   const goals = document.querySelector(".goal");
   return goals.outerHTML;
 };
+console.log(getTitle);
+console.log(getDescription());
+console.log(getPlans());
+console.log(getGoal());
