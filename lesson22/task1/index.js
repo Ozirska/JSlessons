@@ -30,4 +30,4 @@ const attachBtn = document.querySelector(".attach-handlers-btn");
 attachBtn.addEventListener("click", logTarget);
 
 const removeBtn = document.querySelector(".remove-handlers-btn");
-removeBtn.addEventListener("click", logTarget);
+removeBtn.removeEventListener("click", logTarget);
