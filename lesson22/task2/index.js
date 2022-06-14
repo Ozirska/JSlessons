@@ -1,5 +1,5 @@
-const checkbox = document.querySelectorAll(".task-status");
+const checkbox = document.querySelector(".task-status");
 function check(event) {
   console.log(event.target.checked);
 }
-[...checkbox].map((el) => el.addEventListener("click", check));
+checkbox.addEventListener("click", check);
