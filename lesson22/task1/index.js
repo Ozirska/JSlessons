@@ -27,7 +27,7 @@ clearBtn.addEventListener("click", () => {
 });
 
 const attachBtn = document.querySelector(".attach-handlers-btn");
-attachBtn.addEventListener("click", logTarget);
+attachBtn.addEventListener("click", logTarget.bind);
 
 const removeBtn = document.querySelector(".remove-handlers-btn");
-removeBtn.removeEventListener("click", logTarget);
+removeBtn.removeEventListener("click", logTarget.bind);
