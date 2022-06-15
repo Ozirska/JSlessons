@@ -26,8 +26,26 @@ clearBtn.addEventListener("click", () => {
   document.querySelector(".events-list").innerHTML = " ";
 });
 
-const attachBtn = document.querySelector(".attach-handlers-btn");
-attachBtn.addEventListener("click", logTarget.bind);
+function removeHanders() {
+  divElem.removeEventListener("click", logGreenDiv);
+  pElem.removeEventListener("click", logGreenP);
+  spanElem.removeEventListener("click", logGreenSpan);
 
+  divElem.removeEventListener("click", logGreyDiv, true);
+  pElem.removeEventListener("click", logGreyP, true);
+  spanElem.removeEventListener("click", logGreySpan, true);
+}
 const removeBtn = document.querySelector(".remove-handlers-btn");
-removeBtn.removeEventListener("click", logTarget.bind);
+removeBtn.addEventListener("click", removeHanders);
+
+function attachHandlers() {
+  divElem.addEventListener("click", logGreenDiv);
+  pElem.addEventListener("click", logGreenP);
+  spanElem.addEventListener("click", logGreenSpan);
+
+  divElem.addEventListener("click", logGreyDiv, true);
+  pElem.addEventListener("click", logGreyP, true);
+  spanElem.addEventListener("click", logGreySpan, true);
+}
+const attachBtn = document.querySelector(".attach-handlers-btn");
+attachBtn.addEventListener("click", attachHandlers);
