@@ -38,7 +38,7 @@ const renderArena = () => {
   arenaElem.innerHTML = sectorsString;
 };
 
-renderArena();
+// renderArena();
 
 const onSeatSelect = (event) => {
   const isSeat = event.target.classList.contains("sector__seat");
