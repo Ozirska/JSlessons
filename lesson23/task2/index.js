@@ -11,7 +11,7 @@ const getLineSeats = () =>
   generateNumbersRange(1, 10)
     .map(
       (seatNumber) =>
-        ` <div  class="sector__seat"  data-seat-number="${seatNumber}"></div>`
+        `<div class="sector__seat" data-seat-number="${seatNumber}"></div>`
     )
     .join("");
 
@@ -21,24 +21,25 @@ const getSectorLines = () => {
   return generateNumbersRange(1, 10)
     .map(
       (lineNumber) =>
-        ` <div  class="sector__line"  data-line-number="${lineNumber}">${seatsString}</div>`
+        `<div class="sector__line" data-line-number="${lineNumber}">${seatsString}</div>`
     )
     .join("");
 };
-const arenaElem = document.querySelector(".arena ");
-
+const arenaElem = document.querySelector(".arena");
 const renderArena = () => {
   const linesString = getSectorLines();
 
   const sectorsString = generateNumbersRange(1, 3)
     .map(
       (sectorNumber) =>
-        ` <div   class="sector"  data-sector-number="${sectorNumber}" >${linesString}</div>`
+        `<div class="sector" data-sector-number="${sectorNumber}">${linesString}</div>`
     )
     .join("");
-
   arenaElem.innerHTML = sectorsString;
 };
+
+renderArena();
+
 const onSeatSelect = (event) => {
   const isSeat = event.target.classList.contains("sector__seat");
   if (!isSeat) {
@@ -54,5 +55,3 @@ const onSeatSelect = (event) => {
 };
 
 arenaElem.addEventListener("click", onSeatSelect);
-
-renderArena();
