@@ -1,7 +1,7 @@
 const generateNumbersRange = (from, to) => {
   const result = [];
 
-  for (let i = from; i <= to; i + 1) {
+  for (let i = from; i <= to; i++) {
     result.push(i);
   }
   return result;
@@ -38,7 +38,7 @@ const renderArena = () => {
   arenaElem.innerHTML = sectorsString;
 };
 
-// renderArena();
+renderArena();
 
 const onSeatSelect = (event) => {
   const isSeat = event.target.classList.contains("sector__seat");
