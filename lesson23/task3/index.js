@@ -1,4 +1,4 @@
-export const tasks = [
+const tasks = [
   { text: "Buy milk", done: false },
   { text: "Pick up Tom from airport", done: false },
   { text: "Visit party", done: false },
@@ -6,28 +6,54 @@ export const tasks = [
   { text: "Buy meat", done: true },
 ];
 
-/**
- * @param {object[]} tasksList
- * @return {undefined}
- */
-const renderTasks = (tasksList) => {
-  const listElem = document.querySelector(".list");
+const listElem = document.querySelector(".list");
 
-  const listItemsElems = tasksList.map(({ text, done }) => {
+const renderTasks = (tasksList) => {
+  const tasksElems = tasksList
+    .sort((a, b) => a.done - b.done)
+    .map(({ text, done }) => {
+      const listItemElem = document.createElement("li");
+      listItemElem.classList.add("list__item");
+      const checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+      checkbox.checked = done;
+      checkbox.classList.add("list__item-checkbox");
+      if (done) {
+        listItemElem.classList.add("list__item_done");
+      }
+      listItemElem.append(checkbox, text);
+
+      return listItemElem;
+    });
+
+  listElem.append(...tasksElems);
+};
+
+renderTasks(tasks);
+
+const createElemToDo = () => {
+  const input = document.querySelector(".task-input");
+
+  const inputNew = { text: input.value, done: false };
+  tasks.push(inputNew);
+
+  input.value = "";
+
+  const tasksElems = [inputNew].map(({ text, done }) => {
     const listItemElem = document.createElement("li");
     listItemElem.classList.add("list__item");
-    if (done) {
-      listItemElem.classList.add("list__item_done");
-    }
-    const checkboxElem = document.createElement("input");
-    checkboxElem.setAttribute("type", "checkbox");
-    checkboxElem.checked = done;
-    checkboxElem.classList.add("list__item-checkbox");
-    listItemElem.append(checkboxElem, text);
+    const checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.checked = done;
+    checkbox.classList.add("list__item-checkbox");
+    listItemElem.append(checkbox, text);
 
     return listItemElem;
   });
+  listElem.prepend(...tasksElems);
 
-  listElem.append(...listItemsElems);
+  console.log(tasks);
 };
-renderTasks(tasks);
+
+const createBtn = document.querySelector(".btn");
+createBtn.addEventListener("click", createElemToDo);
