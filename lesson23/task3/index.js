@@ -55,14 +55,10 @@ createBtn.addEventListener("click", createElemToDo);
 const styleCheckbox = (event) => {
   const idElemClos = event.target.closest(".list__item");
 
-  const itemId = event.target.parentElement.dataset.id;
+  // const itemId = event.target.parentElement.dataset.id;
+  // const elementEvent = document.querySelector('[data-id="itemId"]');
 
-  if (event.target.checked === true) {
-    idElemClos.classList.add("list__item_done");
-  }
-  if (event.target.checked === false) {
-    idElemClos.classList.add("list__item");
-  }
+  idElemClos.classList.toggle("list__item_done");
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
