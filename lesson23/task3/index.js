@@ -55,12 +55,38 @@ createBtn.addEventListener("click", createElemToDo);
 const styleCheckbox = (event) => {
   const idElemClos = event.target.closest(".list__item");
 
+  // idElemClos.classList.toggle("list__item_done");
   // const itemId = event.target.parentElement.dataset.id;
-  // const elementEvent = document.querySelector('[data-id="itemId"]');
+  // const elementEvent = document.querySelector('[data-id="1"]');
 
-  idElemClos.classList.toggle("list__item_done");
+  console.log(idElemClos.textContent);
+  const doneVAlue = event.target.checked;
+  console.log(doneVAlue);
+  tasks.map((obj) => {
+    if (obj.text === idElemClos.textContent) obj.done = doneVAlue;
+  });
+  console.log(tasks);
+  listElem.textContent = "";
+
+  renderTasks(tasks);
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
 [...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
+
+// 1. в функции renderTasks для каждого чекбокса назначить дата атрибут id
+// 2. функция createElemToDo
+// 2.1 проверяет наличие текста в инпуте
+// 2.2 создать объект с текстом из инпута и значением не выполнен
+// 2.3 новый объект добавить к масиву tasks
+// 2.4 удалить список
+// 2.5 вызвать функцию renderTasks(tasks), что б отрисовать обновлённый список
+// 3. найти все чекбоксы
+// 4. навесить событие на каждый чекбокс
+// 5. функция  styleCheckbox принимает событие
+// 5.1 найти дата атрибут элемента на который нажали
+// 5.2 найти этот элемент в масиве
+// 5.3 значение done поменять на значение event.target.checked
+// 5.3 удалить список li
+// 5.4 вызвать функцию renderTasks
