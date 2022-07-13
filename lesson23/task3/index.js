@@ -12,8 +12,9 @@ const renderTasks = (tasksList) => {
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
 
-    .map(({ text, done }) => {
+    .map(({ text, done }, el) => {
       const listItemElem = document.createElement("li");
+
       listItemElem.classList.add("list__item");
       const checkbox = document.createElement("input");
       checkbox.setAttribute("type", "checkbox");
@@ -26,6 +27,8 @@ const renderTasks = (tasksList) => {
 
       return listItemElem;
     });
+  tasksElems.forEach((n, i) => (n.dataset.id = i + 1));
+  tasks.forEach((n, i) => (n.id = i + 1));
 
   listElem.prepend(...tasksElems);
 };
@@ -43,7 +46,8 @@ const createElemToDo = () => {
 
   input.value = "";
 
-  renderTasks([inputNew]);
+  listElem.textContent = "";
+  renderTasks(tasks);
 
   const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
@@ -57,11 +61,12 @@ const styleCheckbox = (event) => {
   const idElemClos = event.target.closest(".list__item");
   const parentElemEven = event.target.parentNode;
   console.log(event.target.textContent);
+  const itemId = event.target.parentElement.dataset.id;
 
-  console.log(idElemClos.textContent);
+  console.log(itemId);
   const doneValue = event.target.checked;
   console.log(doneValue);
-  const taskData = tasks.find((task) => task.text === idElemClos.textContent);
+  const taskData = tasks.find((task) => String(task.id) === itemId);
   Object.assign(taskData, { done: event.target.checked });
   console.log(taskData);
   console.log(tasks);
