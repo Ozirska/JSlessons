@@ -59,13 +59,14 @@ const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
 
 const styleCheckbox = (event) => {
+  const ischecked = event.target.classList.contains("list__item-checkbox");
+  if (!ischecked) return;
+
   console.log(event.target.textContent);
   const itemId = event.target.parentElement.dataset.id;
 
   const taskData = tasks.find((task) => String(task.id) === itemId);
   Object.assign(taskData, { done: event.target.checked });
-
-  listElem.textContent = "";
   renderTasks(tasks);
 
   const newcheckboxElem = document.querySelectorAll(".list__item-checkbox");
