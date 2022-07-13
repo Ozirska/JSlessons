@@ -26,6 +26,8 @@ const renderTasks = (tasksList) => {
       if (done) {
         listItemElem.classList.add("list__item_done");
       }
+      checkbox.addEventListener("change", onToggleTask);
+
       listItemElem.append(checkbox, text);
 
       return listItemElem;
@@ -33,8 +35,6 @@ const renderTasks = (tasksList) => {
 
   listElem.append(...tasksElems);
 };
-
-renderTasks(tasks);
 
 const createElemToDo = () => {
   const input = document.querySelector(".task-input");
@@ -49,10 +49,6 @@ const createElemToDo = () => {
 
   listElem.innerHTML = "";
   renderTasks(tasks);
-
-  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
-
-  [...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
 };
 
 const createBtn = document.querySelector(".btn");
@@ -68,15 +64,13 @@ const onToggleTask = (event) => {
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
-
-  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
-
-  [...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
 [...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
+
+renderTasks(tasks);
 
 // 1. в функции renderTasks для каждого чекбокса назначить дата атрибут id
 // 2. функция createElemToDo
