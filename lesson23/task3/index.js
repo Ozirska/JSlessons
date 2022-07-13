@@ -63,9 +63,10 @@ const styleCheckbox = (event) => {
   if (!ischecked) return;
 
   console.log(event.target.textContent);
-  const itemId = event.target.dataset.id;
 
-  const taskData = tasks.find((task) => String(task.id) === itemId);
+  const taskData = tasks.find(
+    (task) => String(task.id) === event.target.dataset.id
+  );
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
