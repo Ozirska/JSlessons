@@ -31,7 +31,7 @@ const renderTasks = (tasksList) => {
       return listItemElem;
     });
 
-  listElem.prepend(...tasksElems);
+  listElem.append(...tasksElems);
 };
 
 renderTasks(tasks);
@@ -43,7 +43,7 @@ const createElemToDo = () => {
     return;
   }
   const inputNew = { text: input.value, done: false };
-  tasks.push(inputNew);
+  tasks.unshift(inputNew);
 
   input.value = "";
 
@@ -70,11 +70,9 @@ const styleCheckbox = (event) => {
   listElem.innerHTML = "";
   renderTasks(tasks);
 
-  const newcheckboxElem = document.querySelectorAll(".list__item-checkbox");
+  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
-  [...newcheckboxElem].map((el) =>
-    el.addEventListener("change", styleCheckbox)
-  );
+  [...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
