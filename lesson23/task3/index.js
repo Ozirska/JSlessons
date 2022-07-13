@@ -52,7 +52,7 @@ const createElemToDo = () => {
 
   const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
-  [...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
+  [...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
 };
 
 const createBtn = document.querySelector(".btn");
