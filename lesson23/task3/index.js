@@ -70,10 +70,6 @@ const styleCheckbox = (event) => {
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
-
-  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
-
-  [...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
