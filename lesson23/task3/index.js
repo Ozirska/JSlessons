@@ -66,6 +66,10 @@ const onToggleTask = (event) => {
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
+
+  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
+
+  [...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
