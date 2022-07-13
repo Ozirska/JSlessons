@@ -58,18 +58,11 @@ const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
 
 const styleCheckbox = (event) => {
-  const idElemClos = event.target.closest(".list__item");
-  const parentElemEven = event.target.parentNode;
   console.log(event.target.textContent);
   const itemId = event.target.parentElement.dataset.id;
 
-  console.log(itemId);
-  const doneValue = event.target.checked;
-  console.log(doneValue);
   const taskData = tasks.find((task) => String(task.id) === itemId);
   Object.assign(taskData, { done: event.target.checked });
-  console.log(taskData);
-  console.log(tasks);
 
   listElem.textContent = "";
   renderTasks(tasks);
