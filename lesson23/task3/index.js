@@ -17,9 +17,9 @@ const renderTasks = (tasksList) => {
     .map(({ text, done, id }, el) => {
       const listItemElem = document.createElement("li");
 
-      listItemElem.dataset.id = id;
       listItemElem.classList.add("list__item");
       const checkbox = document.createElement("input");
+      checkbox.dataset.id = id;
       checkbox.setAttribute("type", "checkbox");
       checkbox.checked = done;
       checkbox.classList.add("list__item-checkbox");
@@ -63,7 +63,7 @@ const styleCheckbox = (event) => {
   if (!ischecked) return;
 
   console.log(event.target.textContent);
-  const itemId = event.target.parentElement.dataset.id;
+  const itemId = event.target.dataset.id;
 
   const taskData = tasks.find((task) => String(task.id) === itemId);
   Object.assign(taskData, { done: event.target.checked });
