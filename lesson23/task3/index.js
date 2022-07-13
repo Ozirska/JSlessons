@@ -58,15 +58,11 @@ const createElemToDo = () => {
 const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
 
-const styleCheckbox = (event) => {
-  const ischecked = event.target.classList.contains("list__item-checkbox");
-  if (!ischecked) return;
+const onToggleTask = (event) => {
+  const isChecked = event.target.classList.contains("list__item-checkbox");
+  if (!isChecked) return;
 
-  console.log(event.target.textContent);
-
-  const taskData = tasks.find(
-    (task) => String(task.id) === event.target.dataset.id
-  );
+  const taskData = tasks.find((task) => task.id === event.target.dataset.id);
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
@@ -74,7 +70,7 @@ const styleCheckbox = (event) => {
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
 
-[...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
+[...checkboxElem].map((el) => el.addEventListener("change", onToggleTask));
 
 // 1. в функции renderTasks для каждого чекбокса назначить дата атрибут id
 // 2. функция createElemToDo
