@@ -9,12 +9,15 @@ const tasks = [
 const listElem = document.querySelector(".list");
 
 const renderTasks = (tasksList) => {
+  tasksList.forEach((task, index) => (task.id = index + 1));
   const tasksElems = tasksList
+
     .sort((a, b) => a.done - b.done)
 
-    .map(({ text, done }, el) => {
+    .map(({ text, done, id }, el) => {
       const listItemElem = document.createElement("li");
 
+      listItemElem.dataset.id = id;
       listItemElem.classList.add("list__item");
       const checkbox = document.createElement("input");
       checkbox.setAttribute("type", "checkbox");
@@ -27,8 +30,6 @@ const renderTasks = (tasksList) => {
 
       return listItemElem;
     });
-  tasksElems.forEach((n, i) => (n.dataset.id = i + 1));
-  tasks.forEach((n, i) => (n.id = i + 1));
 
   listElem.prepend(...tasksElems);
 };
