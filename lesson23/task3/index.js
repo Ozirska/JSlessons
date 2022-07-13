@@ -62,7 +62,9 @@ const onToggleTask = (event) => {
   const isChecked = event.target.classList.contains("list__item-checkbox");
   if (!isChecked) return;
 
-  const taskData = tasks.find((task) => task.id === event.target.dataset.id);
+  const taskData = tasks.find(
+    (task) => String(task.id) === event.target.dataset.id
+  );
   Object.assign(taskData, { done: event.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
