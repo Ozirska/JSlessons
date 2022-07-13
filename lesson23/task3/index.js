@@ -26,7 +26,6 @@ const renderTasks = (tasksList) => {
 
       return listItemElem;
     });
-  tasksElems.forEach((n, i) => (n.dataset.id = i + 1));
 
   listElem.prepend(...tasksElems);
 };
@@ -44,9 +43,11 @@ const createElemToDo = () => {
 
   input.value = "";
 
-  listElem.textContent = "";
+  renderTasks([inputNew]);
 
-  renderTasks(tasks);
+  const checkboxElem = document.querySelectorAll(".list__item-checkbox");
+
+  [...checkboxElem].map((el) => el.addEventListener("change", styleCheckbox));
 };
 
 const createBtn = document.querySelector(".btn");
@@ -54,21 +55,25 @@ createBtn.addEventListener("click", createElemToDo);
 
 const styleCheckbox = (event) => {
   const idElemClos = event.target.closest(".list__item");
-
-  // idElemClos.classList.toggle("list__item_done");
-  // const itemId = event.target.parentElement.dataset.id;
-  // const elementEvent = document.querySelector('[data-id="1"]');
+  const parentElemEven = event.target.parentNode;
+  console.log(event.target.textContent);
 
   console.log(idElemClos.textContent);
-  const doneVAlue = event.target.checked;
-  console.log(doneVAlue);
-  tasks.map((obj) => {
-    if (obj.text === idElemClos.textContent) obj.done = doneVAlue;
-  });
+  const doneValue = event.target.checked;
+  console.log(doneValue);
+  const taskData = tasks.find((task) => task.text === idElemClos.textContent);
+  Object.assign(taskData, { done: event.target.checked });
+  console.log(taskData);
   console.log(tasks);
-  listElem.textContent = "";
 
+  listElem.textContent = "";
   renderTasks(tasks);
+
+  const newcheckboxElem = document.querySelectorAll(".list__item-checkbox");
+
+  [...newcheckboxElem].map((el) =>
+    el.addEventListener("change", styleCheckbox)
+  );
 };
 
 const checkboxElem = document.querySelectorAll(".list__item-checkbox");
