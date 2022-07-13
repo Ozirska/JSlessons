@@ -47,7 +47,7 @@ const createElemToDo = () => {
 
   input.value = "";
 
-  listElem.textContent = "";
+  listElem.innerHTML = "";
   renderTasks(tasks);
 
   const checkboxElem = document.querySelectorAll(".list__item-checkbox");
@@ -67,6 +67,7 @@ const styleCheckbox = (event) => {
 
   const taskData = tasks.find((task) => String(task.id) === itemId);
   Object.assign(taskData, { done: event.target.checked });
+  listElem.innerHTML = "";
   renderTasks(tasks);
 
   const newcheckboxElem = document.querySelectorAll(".list__item-checkbox");
