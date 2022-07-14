@@ -8,6 +8,16 @@ const tasks = [
 
 const listElem = document.querySelector(".list");
 
+// 1. функция renderTasks принимает массив
+//  1.1 пройтись по массиву и назначить id
+//  1.2 отсортировать
+//  1.3 пройтись по массивую Даные объекта использовать для создания элемента
+//     -text текст элемента
+//     -done для значения чекбокса
+//     -id чекбоксу добавить дата атрибут
+//  1.4 на чекбокс навесить событие "change"
+//  1.5 созданый li добавиль в ul
+
 const renderTasks = (tasksList) => {
   tasksList.forEach((task, index) => (task.id = index + 1));
   const tasksElems = tasksList
@@ -36,6 +46,14 @@ const renderTasks = (tasksList) => {
   listElem.append(...tasksElems);
 };
 
+//  2 функция createElemToDo  выполняется есть нажать на "кнопку создать"
+//   2.1 возвращает, если инпут пустой
+//   2.2 создает объект с даными из инпута и значение чекбокса
+//   2.3 добавить объект в массив
+//   2.4 очистить поле инпута
+//   2.5 очистить старый список
+//   2.6 вызвать функцию renderTasks
+
 const createElemToDo = () => {
   const input = document.querySelector(".task-input");
   if (input.value === "") {
@@ -50,9 +68,17 @@ const createElemToDo = () => {
   listElem.innerHTML = "";
   renderTasks(tasks);
 };
+// навесить событие на кнопку
 
 const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
+
+// 3 функция onToggleTask принимает событие
+//  3.1 проверка на чекбокс
+//  3.2 в масиве найти объект на который нажали
+//  3.3 изменить значение done в этом объекте
+//  3.4 очистить список
+//  3.5 вызвать функцию renderTasks
 
 const onToggleTask = (e) => {
   const isCheckbox = e.target.classList.contains("list__item-checkbox");
@@ -65,6 +91,7 @@ const onToggleTask = (e) => {
     (task) => String(task.id) === e.target.dataset.id
   );
   Object.assign(taskData, { done: e.target.checked });
+
   listElem.innerHTML = "";
   renderTasks(tasks);
 };
