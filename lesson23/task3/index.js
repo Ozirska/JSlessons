@@ -35,7 +35,7 @@ const renderTasks = (tasksList) => {
       if (done) {
         listItemElem.classList.add("list__item_done");
       }
-      checkbox.addEventListener("change", onToggleTask);
+      checkbox.addEventListener("click", onToggleTask);
 
       listItemElem.append(checkbox, text);
 
