@@ -41,8 +41,9 @@ const createElemToDo = () => {
   if (input.value === "") {
     return;
   }
+
   const inputNew = { text: input.value, done: false };
-  tasks.unshift(inputNew);
+  tasks.push(inputNew);
 
   input.value = "";
 
@@ -53,14 +54,17 @@ const createElemToDo = () => {
 const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
 
-const onToggleTask = (event) => {
-  const isCheckbox = event.target.classList.contains("list__item-checkbox");
-  if (!isCheckbox) return;
+const onToggleTask = (e) => {
+  const isCheckbox = e.target.classList.contains("list__item-checkbox");
+
+  if (!isCheckbox) {
+    return;
+  }
 
   const taskData = tasks.find(
-    (task) => String(task.id) === event.target.dataset.id
+    (task) => String(task.id) === e.target.dataset.id
   );
-  Object.assign(taskData, { done: event.target.checked });
+  Object.assign(taskData, { done: e.target.checked });
   listElem.innerHTML = "";
   renderTasks(tasks);
 };
