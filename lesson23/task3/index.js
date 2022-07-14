@@ -1,9 +1,9 @@
 const tasks = [
-  { text: "Buy milk", done: false, id: 1 },
-  { text: "Pick up Tom from airport", done: false, id: 2 },
-  { text: "Visit party", done: false, id: 3 },
-  { text: "Visit doctor", done: true, id: 4 },
-  { text: "Buy meat", done: true, id: 5 },
+  { text: "Buy milk", done: false, id: "1" },
+  { text: "Pick up Tom from airport", done: false, id: "2" },
+  { text: "Visit party", done: false, id: "3" },
+  { text: "Visit doctor", done: true, id: "4" },
+  { text: "Buy meat", done: true, id: "5" },
 ];
 
 const listElem = document.querySelector(".list");
@@ -62,7 +62,7 @@ const createElemToDo = () => {
   const inputNew = {
     text: input.value,
     done: false,
-    id: Math.random().toString(2),
+    id: Math.random().toString(),
   };
   tasks.push(inputNew);
 
@@ -90,9 +90,7 @@ const onToggleTask = (e) => {
     return;
   }
 
-  const taskData = tasks.find(
-    (task) => String(task.id) === e.target.dataset.id
-  );
+  const taskData = tasks.find((task) => task.id === e.target.dataset.id);
   Object.assign(taskData, { done: e.target.checked });
 
   listElem.innerHTML = "";
