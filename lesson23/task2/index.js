@@ -58,3 +58,7 @@ const onSeatSelect = (event) => {
 };
 
 arenaElem.addEventListener("click", onSeatSelect);
+
+// idElemClos.classList.toggle("list__item_done");
+// const itemId = event.target.parentElement.dataset.id;
+// const elementEvent = document.querySelector('[data-id="1"]');
