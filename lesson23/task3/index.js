@@ -59,12 +59,11 @@ const createElemToDo = () => {
     return;
   }
 
-  const inputNew = {
+  tasks.push({
     text: input.value,
     done: false,
     id: Math.random().toString(),
-  };
-  tasks.push(inputNew);
+  });
 
   input.value = "";
 
