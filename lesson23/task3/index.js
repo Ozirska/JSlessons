@@ -1,9 +1,9 @@
 const tasks = [
-  { text: "Buy milk", done: false },
-  { text: "Pick up Tom from airport", done: false },
-  { text: "Visit party", done: false },
-  { text: "Visit doctor", done: true },
-  { text: "Buy meat", done: true },
+  { text: "Buy milk", done: false, id: 1 },
+  { text: "Pick up Tom from airport", done: false, id: 2 },
+  { text: "Visit party", done: false, id: 3 },
+  { text: "Visit doctor", done: true, id: 4 },
+  { text: "Buy meat", done: true, id: 5 },
 ];
 
 const listElem = document.querySelector(".list");
@@ -19,7 +19,6 @@ const listElem = document.querySelector(".list");
 //  1.5 созданый li добавиль в ul
 
 const renderTasks = (tasksList) => {
-  tasksList.forEach((task, index) => (task.id = index + 1));
   const tasksElems = tasksList
 
     .sort((a, b) => a.done - b.done)
@@ -60,7 +59,11 @@ const createElemToDo = () => {
     return;
   }
 
-  const inputNew = { text: input.value, done: false };
+  const inputNew = {
+    text: input.value,
+    done: false,
+    id: Math.random().toString(2),
+  };
   tasks.push(inputNew);
 
   input.value = "";
