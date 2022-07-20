@@ -1,9 +1,34 @@
 const tasks = [
-  { text: "Buy milk", done: false, id: "1" },
-  { text: "Pick up Tom from airport", done: false, id: "2" },
-  { text: "Visit party", done: false, id: "3" },
-  { text: "Visit doctor", done: true, id: "4" },
-  { text: "Buy meat", done: true, id: "5" },
+  {
+    text: "Buy milk",
+    done: false,
+    id: "1",
+    date: new Date("10.07.2021, 12:14"),
+  },
+  {
+    text: "Pick up Tom from airport",
+    done: false,
+    id: "2",
+    date: new Date("10.07.2012, 12:14"),
+  },
+  {
+    text: "Visit party",
+    done: false,
+    id: "3",
+    date: new Date("11.07.2012, 12:14"),
+  },
+  {
+    text: "Visit doctor",
+    done: true,
+    id: "4",
+    date: new Date("10.07.2002, 12:14"),
+  },
+  {
+    text: "Buy meat",
+    done: true,
+    id: "5",
+    date: new Date("10.07.2013, 12:14"),
+  },
 ];
 
 const listElem = document.querySelector(".list");
@@ -21,7 +46,7 @@ const listElem = document.querySelector(".list");
 const renderTasks = (tasksList) => {
   const tasksElems = tasksList
 
-    .sort((a, b) => a.done - b.done)
+    .sort((a, b) => a.done - b.done || b.date - a.date)
 
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement("li");
@@ -63,6 +88,7 @@ const createElemToDo = () => {
     text: input.value,
     done: false,
     id: Math.random().toString(),
+    date: new Date(),
   });
 
   input.value = "";
