@@ -116,7 +116,7 @@ const onToggleTask = (e) => {
   }
 
   const taskData = tasks.find((task) => task.id === e.target.dataset.id);
-  Object.assign(taskData, { done: e.target.checked });
+  Object.assign(taskData, { done: e.target.checked, date: new Date() });
 
   listElem.innerHTML = "";
   renderTasks(tasks);
