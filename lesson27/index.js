@@ -1,5 +1,3 @@
-console.log("hfhjfjh");
-
 const counterElem = document.querySelector(".counter");
 const counterValueElem = document.querySelector(".counter__value");
 const onCounterChange = (e) => {
@@ -8,7 +6,7 @@ const onCounterChange = (e) => {
     return;
   }
 
-  let action = e.target.dataset.action;
+  const action = e.target.dataset.action;
 
   const oldValue = Number(counterValueElem.textContent);
 
