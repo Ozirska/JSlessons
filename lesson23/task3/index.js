@@ -1,53 +1,29 @@
-const tasks = [
-  {
-    text: "Buy milk",
-    done: false,
-    id: "1",
-    date: new Date("10.07.2021, 12:14"),
-  },
-  {
-    text: "Pick up Tom from airport",
-    done: false,
-    id: "2",
-    date: new Date("10.07.2012, 12:14"),
-  },
-  {
-    text: "Visit party",
-    done: false,
-    id: "3",
-    date: new Date("11.07.2012, 12:14"),
-  },
-  {
-    text: "Visit doctor",
-    done: true,
-    id: "4",
-    date: new Date("10.07.2002, 12:14"),
-  },
-  {
-    text: "Buy meat",
-    done: true,
-    id: "5",
-    date: new Date("10.07.2013, 12:14"),
-  },
-];
+const setItem = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+const getItem = (key) => JSON.parse(localStorage.getItem(key));
 
 const listElem = document.querySelector(".list");
 
 // 1. функция renderTasks принимает массив
 //  1.1 пройтись по массиву и назначить id
 //  1.2 отсортировать
-//  1.3 пройтись по массивую Даные объекта использовать для создания элемента
+//  1.3 пройтись по массиву Даные объекта использовать для создания элемента
 //     -text текст элемента
 //     -done для значения чекбокса
 //     -id чекбоксу добавить дата атрибут
 //  1.4 на чекбокс навесить событие "change"
 //  1.5 созданый li добавиль в ul
 
-const renderTasks = (tasksList) => {
-  const tasksElems = tasksList
+const renderTasks = () => {
+  // const renderTasks = (tasksList) =>
+  // const tasksElems = tasksList
+  // замість цього має бути вuклик обьєкта з localStorage
+  // const tasksElems = JSON.parse(localStorage.getItem("storageTasks"));
 
+  const taskLista = getItem("storageTasks") || [];
+  const tasksElems = taskLista
     .sort((a, b) => a.done - b.done || b.date - a.date)
-
     .map(({ text, done, id }) => {
       const listItemElem = document.createElement("li");
 
@@ -83,20 +59,21 @@ const createElemToDo = () => {
   if (input.value === "") {
     return;
   }
-
-  tasks.push({
+  const taskList = getItem("storageTasks") || [];
+  const newTaskList = taskList.concat({
     text: input.value,
     done: false,
     id: Math.random().toString(),
     date: new Date(),
   });
 
+  setItem("storageTasks", newTaskList);
+
   input.value = "";
 
   listElem.innerHTML = "";
-  renderTasks(tasks);
+  renderTasks();
 };
-// навесить событие на кнопку
 
 const createBtn = document.querySelector(".btn");
 createBtn.addEventListener("click", createElemToDo);
@@ -115,11 +92,34 @@ const onToggleTask = (e) => {
     return;
   }
 
-  const taskData = tasks.find((task) => task.id === e.target.dataset.id);
-  Object.assign(taskData, { done: e.target.checked, date: new Date() });
+  const taskList = getItem("storageTasks");
 
+  const newTaskList = taskList.map((task) => {
+    if (task.id === e.target.dataset.id) {
+      const done = e.target.checked;
+      return {
+        ...task,
+        done,
+        date: done ? new Date() : null,
+      };
+    }
+    return task;
+  });
+  setItem("storageTasks", newTaskList);
   listElem.innerHTML = "";
-  renderTasks(tasks);
+  renderTasks();
 };
+// onToggleTask меняет состояниетаски
+// обновляет масив в localStorage
 
-renderTasks(tasks);
+renderTasks();
+
+const onStorageChange = (e) => {
+  if (e.key === "storageTasks") {
+    listElem.innerHTML = "";
+    renderTasks();
+  }
+};
+window.addEventListener("storage", onStorageChange);
+
+// onStorageChange синхронизирует между вкладками
