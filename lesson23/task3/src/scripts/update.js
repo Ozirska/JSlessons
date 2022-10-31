@@ -10,7 +10,7 @@ export const onToggleTask = (e) => {
     return;
   }
 
-  const taskList = getItem("storageTasks");
+  const taskList = getItem("tasksList");
 
   const newTaskList = taskList.map((task) => {
     if (task.id === e.target.dataset.id) {
@@ -23,7 +23,7 @@ export const onToggleTask = (e) => {
     }
     return task;
   });
-  setItem("storageTasks", newTaskList);
+  setItem("tasksList", newTaskList);
   listElem.innerHTML = "";
   renderTasks();
 };

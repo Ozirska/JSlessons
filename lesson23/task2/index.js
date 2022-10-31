@@ -21,11 +21,12 @@ const getSectorLines = () => {
   return generateNumbersRange(1, 10)
     .map(
       (lineNumber) =>
-        `<div class="sector__line" data-line-number="${lineNumber}">${seatsString}</div>`
+        `<div class="sector__line" data-line-number="${lineNumber}">${  }</div>`
     )
     .join("");
 };
 const arenaElem = document.querySelector(".arena");
+
 const renderArena = () => {
   const linesString = getSectorLines();
 
@@ -58,7 +59,3 @@ const onSeatSelect = (event) => {
 };
 
 arenaElem.addEventListener("click", onSeatSelect);
-
-// idElemClos.classList.toggle("list__item_done");
-// const itemId = event.target.parentElement.dataset.id;
-// const elementEvent = document.querySelector('[data-id="1"]');

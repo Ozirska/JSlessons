@@ -7,7 +7,7 @@ const listElem = document.querySelector(".list");
 // обновляет масив в localStorage
 
 export const renderTasks = () => {
-  const taskLista = getItem("storageTasks") || [];
+  const taskLista = getItem("tasksList") || [];
   const tasksElems = taskLista
     .sort((a, b) => a.done - b.done || b.date - a.date)
     .map(({ text, done, id }) => {

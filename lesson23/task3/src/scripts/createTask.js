@@ -8,7 +8,7 @@ export const createElemToDo = () => {
   if (input.value === "") {
     return;
   }
-  const taskList = getItem("storageTasks") || [];
+  const taskList = getItem("tasksList") || [];
   const newTaskList = taskList.concat({
     text: input.value,
     done: false,
@@ -16,7 +16,7 @@ export const createElemToDo = () => {
     date: new Date(),
   });
 
-  setItem("storageTasks", newTaskList);
+  setItem("tasksList", newTaskList);
 
   input.value = "";
 
