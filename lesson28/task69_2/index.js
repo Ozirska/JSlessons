@@ -2,9 +2,18 @@ import { addImage } from "./addImage.js";
 
 export const addImageV2 = (url) => {
   // put your code here
-  return new Promise((resolve, reject) => {
-    resolve(addImage(url, reject));
+  const p = new Promise((resolve, reject) => {
+    const cb = (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
+    };
+
+    addImage(url, cb);
   });
+  return p;
 };
 
 // examples
