@@ -1,9 +1,9 @@
 import { getItem } from "./storage.js";
-import { onToggleTask } from "./update.js";
+import { onToggleTask, onDeleteTask } from "./update.js";
 
 const listElem = document.querySelector(".list");
 
-// onToggleTask меняет состояниетаски
+// onToggleTask меняет состояние таски
 // обновляет масив в localStorage
 
 export const renderTasks = () => {
@@ -24,7 +24,12 @@ export const renderTasks = () => {
       }
       checkbox.addEventListener("click", onToggleTask);
 
-      listItemElem.append(checkbox, text);
+      const deleteBtnElem = document.createElement("button");
+      deleteBtnElem.dataset.id = id;
+      deleteBtnElem.classList.add("deleteBtn");
+      deleteBtnElem.addEventListener("click", onDeleteTask);
+
+      listItemElem.append(checkbox, text, deleteBtnElem);
 
       return listItemElem;
     });
