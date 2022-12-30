@@ -14,7 +14,7 @@ const createData = (data) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(userData),
-  }).then((response) => alert(response));
+  }).then((response) => alert(response.json()));
 };
 const form = document.querySelector(".login-form");
 
