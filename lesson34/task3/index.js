@@ -14,7 +14,7 @@ const createData = (data) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(userData),
-  });
+  }).then((res) => alert(res.status));
 };
 const form = document.querySelector(".login-form");
 
@@ -27,15 +27,6 @@ const disableBtn = () => {
 };
 form.addEventListener("input", disableBtn);
 
-const getServerData = (email) => {
-  return fetch(baseUrl)
-    .then((response) => response.json())
-    .then((users) => {
-      users.map((el) => {
-        if (el.email === email) alert(JSON.stringify(el));
-      });
-    });
-};
 const getValue = (event) => {
   event.preventDefault();
 
@@ -43,13 +34,10 @@ const getValue = (event) => {
     (acc, [field, value]) => ({ ...acc, [field]: value }),
     {}
   );
-  const { email } = formData;
-  console.log(email);
   createData(formData);
 
   document.querySelector("form").reset();
   registerBtn.setAttribute("disabled", "disabled");
-  getServerData(email);
 };
 
 registerBtn.addEventListener("click", getValue);
