@@ -27,11 +27,15 @@ const disableBtn = () => {
 };
 form.addEventListener("input", disableBtn);
 
-const cleanFild = () => {
-  const filds = document.querySelectorAll(".form-input");
-  [...filds].map((fild) => (fild.value = ""));
+const getServerData = (email) => {
+  return fetch(baseUrl)
+    .then((response) => response.json())
+    .then((users) => {
+      users.map((el) => {
+        if (el.email === email) alert(JSON.stringify(el));
+      });
+    });
 };
-
 const getValue = (event) => {
   event.preventDefault();
 
@@ -39,9 +43,13 @@ const getValue = (event) => {
     (acc, [field, value]) => ({ ...acc, [field]: value }),
     {}
   );
+  const { email } = formData;
+  console.log(email);
   createData(formData);
-  cleanFild();
+
+  document.querySelector("form").reset();
   registerBtn.setAttribute("disabled", "disabled");
+  getServerData(email);
 };
 
 registerBtn.addEventListener("click", getValue);
