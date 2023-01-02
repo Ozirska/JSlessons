@@ -14,7 +14,12 @@ const createData = (data) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(userData),
-  }).then((response) => alert(JSON.stringify(response)));
+  }).then((response) => {
+    if (response.status === 201) {
+      alert(JSON.stringify(response));
+      document.querySelector("form").reset();
+    }
+  });
 };
 const form = document.querySelector(".login-form");
 
@@ -36,7 +41,7 @@ const getValue = (event) => {
   );
   createData(formData);
 
-  document.querySelector("form").reset();
+  // document.querySelector("form").reset();
   registerBtn.setAttribute("disabled", "disabled");
 };
 
