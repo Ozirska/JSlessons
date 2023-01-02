@@ -14,13 +14,13 @@ const createData = (data) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(userData),
-  }).then((response) => {
-    if (response.status === 201) {
-      alert(JSON.stringify(response));
-      document.querySelector("form").reset();
-    }
-  });
-};
+  }) .then(response => response.json())
+    .then(data => {
+      alert(JSON.stringify(data));
+      formElem.reset();
+    });
+  
+
 const form = document.querySelector(".login-form");
 
 const disableBtn = () => {
