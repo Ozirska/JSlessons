@@ -14,12 +14,15 @@ const createData = (data) => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify(userData),
-  }) .then(response => response.json())
-    .then(data => {
-      alert(JSON.stringify(data));
-      formElem.reset();
+  })
+    .then((response) => {
+      response.json();
+    })
+    .then((res) => {
+      alert(JSON.stringify(res));
+      document.querySelector("form").reset();
     });
-  
+};
 
 const form = document.querySelector(".login-form");
 
