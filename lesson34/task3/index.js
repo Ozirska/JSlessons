@@ -15,11 +15,9 @@ const createData = (data) => {
     },
     body: JSON.stringify(userData),
   })
-    .then((response) => {
-      response.json();
-    })
-    .then((res) => {
-      alert(JSON.stringify(res));
+    .then((response) => response.json())
+    .then((data) => {
+      alert(JSON.stringify(data));
       document.querySelector("form").reset();
     });
 };
