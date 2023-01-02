@@ -40,8 +40,6 @@ const getValue = (event) => {
     {}
   );
   createData(formData);
-
-  // document.querySelector("form").reset();
   registerBtn.setAttribute("disabled", "disabled");
 };
 
