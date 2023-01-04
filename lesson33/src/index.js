@@ -30,6 +30,8 @@ const onSearchUser = () => {
       alert(err.message);
     })
     .finally(() => hideSpinner());
+
+  userNameInputElem.value = "";
 };
 
 showUserBtnElem.addEventListener("click", onSearchUser);
