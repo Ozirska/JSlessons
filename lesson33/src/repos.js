@@ -1,5 +1,8 @@
 const listElem = document.querySelector(".repo-list");
 
+export const cleanReposList = () => {
+  listElem.innerHTML = "";
+};
 export const renderRepos = (reposList) => {
   const reposListElem = reposList.map(({ name }) => {
     const listElem = document.createElement("li");
@@ -7,5 +10,5 @@ export const renderRepos = (reposList) => {
     listElem.textContent = name;
     return listElem;
   });
-  listElem.append([...reposListElem]);
+  listElem.append(...reposListElem);
 };
