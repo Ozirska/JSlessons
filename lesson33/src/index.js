@@ -29,7 +29,7 @@ const onSearchUser = () => {
     .catch((err) => {
       alert(err.message);
     })
-    .finally(hideSpinner());
+    .finally(() => hideSpinner());
 };
 
 showUserBtnElem.addEventListener("click", onSearchUser);
