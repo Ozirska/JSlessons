@@ -52,12 +52,23 @@
 //
 //
 
-const parseUser = (json) => {
-  const user = JSON.parse(json);
-  if (user.ok) {
-    return user;
-  }
-  return null;
-};
+// const parseUser = (json) => {
+//   console.log(JSON.parse(json));
+//   // if (user.ok) {
+//   //   return user;
+//   // }
+//   return null;
+// };
 
-parseUser("{name:'Mi'}");
+// parseUser({ name: "Mi" }).catch((error) => alert(error.message));
+
+////////////////////////////////////////////////////
+
+// function readUser(json) {
+//   try {
+//     return JSON.parse(json);
+//   } catch (err) {
+//     if (err instanceof SyntaxError) return null;
+//   }
+// }
+// console.log(readUser('{ "age": 25 '));
